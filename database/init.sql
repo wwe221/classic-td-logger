@@ -2,26 +2,27 @@
 DROP TABLE IF EXISTS CLEAR_INFO;
 CREATE TABLE CLEAR_INFO (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    version FLOAT,
+    version SMALLINT,
     flag SMALLINT,
-    userId NVARCHAR(40),
-    utcTime BIGINT,
-    nickName NVARCHAR(40),
-    roadType SMALLINT,
-    modeType SMALLINT,
+    user_id NVARCHAR(40),
+    utc BIGINT,
+    nick_name NVARCHAR(40),
+    road_type SMALLINT,
+    mode_type SMALLINT,
     difficult SMALLINT,
     point BIGINT,
-    totalIngameGold INT,
-    towerData TEXT,
+    total_ingame_gold INT,
+    tower_data TEXT,
     week INT,
-    day INT
+    day INT,
+    time timestamp default now()
 );
 
 -- GOLD_TABLE 골드 기록 테이블
 DROP TABLE IF EXISTS GOLD_TABLE;
 CREATE TABLE GOLD_TABLE (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    userId VARCHAR(40),
+    user_id VARCHAR(40),
     flag SMALLINT,
     gold INT,
     time timestamp default now()
@@ -31,7 +32,7 @@ CREATE TABLE GOLD_TABLE (
 DROP TABLE IF EXISTS CLEAR_COUNT;
 CREATE TABLE CLEAR_COUNT (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    userId VARCHAR(40),
+    user_id VARCHAR(40),
     flag SMALLINT,
     count INT,
     time timestamp default now()
@@ -41,17 +42,17 @@ CREATE TABLE CLEAR_COUNT (
 DROP TABLE IF EXISTS INGAME_STORE_BUY_INFO;
 CREATE TABLE INGAME_STORE_BUY_INFO (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    version float,
+    version SMALLINT,
     flag SMALLINT,
-    userId VARCHAR(40),
-    utcTime BIGINT,
-    nickName VARCHAR(40),
-    itemName VARCHAR(50),
-    itemIndex INT,
-    beforeGold INT,
-    useGold INT,
-    leftGold INT,
-    buyedInfo TEXT,
+    user_id VARCHAR(40),
+    utc BIGINT,
+    nick_name VARCHAR(40),
+    item_name VARCHAR(50),
+    item_index INT,
+    before_gold INT,
+    use_gold INT,
+    left_gold INT,
+    buyed_info TEXT,
     time timestamp default now()
 
 );
@@ -60,17 +61,17 @@ CREATE TABLE INGAME_STORE_BUY_INFO (
 DROP TABLE IF EXISTS CASH_STORE_BUY_INFO;
 CREATE TABLE CASH_STORE_BUY_INFO (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    version float,
+    version SMALLINT,
     flag SMALLINT,
-    userId VARCHAR(40),
-    utcTime BIGINT,
-    nickName VARCHAR(40),
-    storeType INT,
-    productId VARCHAR(50),
-    purchaseId VARCHAR(255),
+    user_id VARCHAR(40),
+    utc BIGINT,
+    nick_name VARCHAR(40),
+    store_type INT,
+    product_id VARCHAR(50),
+    purchase_id VARCHAR(255),
     price INT,
-    cashItemName VARCHAR(50),
-    cashItemId VARCHAR(50),
+    cash_item_name VARCHAR(50),
+    cash_itemid VARCHAR(50),
     param0 VARCHAR(255),
     param1 VARCHAR(255),
     param2 VARCHAR(255),
@@ -82,11 +83,11 @@ CREATE TABLE CASH_STORE_BUY_INFO (
 DROP TABLE IF EXISTS FISHING_COUNT_TABLE;
 CREATE TABLE FISHING_COUNT_TABLE (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    version float,
+    version SMALLINT,
     flag SMALLINT,
-    userId VARCHAR(40),
-    utcTime BIGINT,
-    nickName VARCHAR(40),
+    user_id VARCHAR(40),
+    utc BIGINT,
+    nick_name VARCHAR(40),
     time timestamp default now()
 );
 
@@ -94,15 +95,15 @@ CREATE TABLE FISHING_COUNT_TABLE (
 DROP TABLE IF EXISTS FISHING_GEAR_BUY_TABLE;
 CREATE TABLE FISHING_GEAR_BUY_TABLE (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    version FLOAT,
+    version SMALLINT,
     flag SMALLINT,
-    userId VARCHAR(40),
-    utcTime BIGINT,
-    nickName VARCHAR(40),
-    gearType INT,
-    gearIndex INT,
-    beforeGold INT,
-    gearPrice INT,
+    user_id VARCHAR(40),
+    utc BIGINT,
+    nick_name VARCHAR(40),
+    gear_type INT,
+    gear_index INT,
+    before_gold INT,
+    gear_price INT,
     time timestamp default now()
 );
 
@@ -110,15 +111,15 @@ CREATE TABLE FISHING_GEAR_BUY_TABLE (
 DROP TABLE IF EXISTS MINE_UPGRADE_TABLE;
 CREATE TABLE MINE_UPGRADE_TABLE (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    version FLOAT,
+    version SMALLINT,
     flag SMALLINT,
-    userId VARCHAR(40),
-    utcTime BIGINT,
-    nickName VARCHAR(40),
-    mineralIndex INT,
-    beforeLevel INT,
-    afterLevel INT,
-    mineralData TEXT,
+    user_id VARCHAR(40),
+    utc BIGINT,
+    nick_name VARCHAR(40),
+    mineral_index INT,
+    before_level INT,
+    after_level INT,
+    mineral_data TEXT,
     time timestamp default now()
 );
 
@@ -126,13 +127,13 @@ CREATE TABLE MINE_UPGRADE_TABLE (
 DROP TABLE IF EXISTS AWARD_BADGE_INFO;
 CREATE TABLE AWARD_BADGE_INFO (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    version FLOAT,
+    version SMALLINT,
     flag SMALLINT,
-    userId VARCHAR(40),
-    utcTime BIGINT,
-    nickName VARCHAR(40),
-    badgeId VARCHAR(255),
-    badgeName VARCHAR(255),
+    user_id VARCHAR(40),
+    utc BIGINT,
+    nick_name VARCHAR(40),
+    badge_id VARCHAR(255),
+    badge_name VARCHAR(255),
     param0 VARCHAR(255),
     param1 VARCHAR(255),
     param2 VARCHAR(255),
@@ -143,9 +144,9 @@ CREATE TABLE AWARD_BADGE_INFO (
 DROP TABLE IF EXISTS TOWER_DAMAGE_TABLE;
 CREATE TABLE TOWER_DAMAGE_TABLE (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    version FLOAT,
+    version SMALLINT,
     flag SMALLINT,
-    towerIndex INT,
+    tower_index INT,
     damage BIGINT
 );
 
@@ -153,23 +154,23 @@ CREATE TABLE TOWER_DAMAGE_TABLE (
 DROP TABLE IF EXISTS TOWER_CREATE_COUNT_TABLE;
 CREATE TABLE TOWER_CREATE_COUNT_TABLE (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    version FLOAT,
+    version SMALLINT,
     flag SMALLINT,
-    towerIndex INT,
-    createCount INT,
-    UNIQUE KEY unique_version_flag_towerIndex (version, flag, towerIndex)
+    tower_index INT,
+    create_count INT,
+    UNIQUE KEY unique_version_flag_towerIndex (version, flag, tower_index)
 );
 
 -- CARDPACK_USE_COUNT_TABLE 카드팩 사용 기록 테이블
 DROP TABLE IF EXISTS CARDPACK_USE_COUNT_TABLE;
 CREATE TABLE CARDPACK_USE_COUNT_TABLE (
     id INT AUTO_INCREMENT PRIMARY KEY,
-  version FLOAT,
+  version SMALLINT,
     flag SMALLINT,
-    userId VARCHAR(40),
-    utcTime BIGINT,
-    nickName VARCHAR(40),
-    useCount INT,
+    user_id VARCHAR(40),
+    utc BIGINT,
+    nick_name VARCHAR(40),
+    use_count INT,
     cardIndex0 INT,
     cardIndex1 INT,
     cardIndex2 INT,
