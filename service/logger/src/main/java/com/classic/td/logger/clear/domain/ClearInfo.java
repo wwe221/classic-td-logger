@@ -51,7 +51,6 @@ public class ClearInfo {
     @Column(name = "total_ingame_gold")
     private Integer totalIngameGold;
 
-    @Lob
     @Column(name = "tower_data")
     private String towerData;
 
