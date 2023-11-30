@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  mysql-db:
+    image: mysql:latest
+    container_name: my-mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: dpsjwl
+      MYSQL_DATABASE: classictd
+      MYSQL_USER: classictd
+      MYSQL_PASSWORD: classictd
+      TZ: Asia/Seoul
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
