@@ -24,6 +24,7 @@ public class ClearInfo {
     @Column(name = "version")
     private Integer version;
 
+    // flag for opServer or devServer
     @Column(name = "flag")
     private boolean flag;
 
@@ -62,7 +63,7 @@ public class ClearInfo {
 
     @Column(name = "time")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime time;
+    private LocalDateTime time = LocalDateTime.now();
 
     public String getCreatedDateTime() {
         if (time != null)

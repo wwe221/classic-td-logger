@@ -12,14 +12,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class InfoService {
     final InfoRepository repository;
+    final CountService countService;
 
     @Transactional(readOnly = true)
-    public List<ClearInfo> getClearAllInfo(){
+    public List<ClearInfo> getClearAllInfo() {
         return repository.findAll();
     }
 
     @Transactional
-    public List<ClearInfo> saveClearInfo(List<ClearInfo> clearInfos){
+    public List<ClearInfo> saveClearInfo(List<ClearInfo> clearInfos) {
+        clearInfos.forEach(info -> countService.increaseClearCount(info.getUserId(), info.isFlag()));
         return repository.saveAll(clearInfos);
     }
 }
