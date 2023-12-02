@@ -1,5 +1,6 @@
 package com.classic.td.logger.clear.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -62,7 +63,7 @@ public class ClearInfo {
     private Integer day;
 
     @Column(name = "time")
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(shape= JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime time = LocalDateTime.now();
 
     public String getCreatedDateTime() {

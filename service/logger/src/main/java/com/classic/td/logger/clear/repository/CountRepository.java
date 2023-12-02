@@ -5,4 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CountRepository extends JpaRepository<ClearCount, Integer> {
     ClearCount findByUserIdAndFlag(String userId, boolean flag);
+
+    ClearCount findFirstByUserIdAndFlagOrderByTimeDesc(String userId, boolean flag);
 }

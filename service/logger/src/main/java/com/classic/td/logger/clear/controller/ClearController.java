@@ -25,9 +25,4 @@ public class ClearController {
     public List<ClearInfo> saveClearInfos(@RequestBody List<ClearInfo> clearInfoList) {
         return infoService.saveClearInfo(clearInfoList);
     }
-
-    @GetMapping("/api/v1/clear/count")
-    public ApiUtils.ApiResult<ClearCount> getCountByUserIdAndFlag(@RequestParam String userId, @RequestParam boolean flag){
-        return ApiUtils.success(countService.readByUserIdAndFlag(userId, flag));
-    }
 }

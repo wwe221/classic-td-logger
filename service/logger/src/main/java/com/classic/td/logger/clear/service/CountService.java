@@ -3,8 +3,11 @@ package com.classic.td.logger.clear.service;
 import com.classic.td.logger.clear.domain.ClearCount;
 import com.classic.td.logger.clear.repository.CountRepository;
 import lombok.RequiredArgsConstructor;
+import net.bytebuddy.asm.Advice;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
 
 /**
  * The type Count service.
@@ -17,31 +20,25 @@ public class CountService {
      */
     final CountRepository repository;
 
-
-    /**
-     * Read by user id and flag clear count.
-     * if not exist, create a new one
-     *
-     * @param userId the user id
-     * @param flag   the flag
-     * @return the clear_count
-     */
-    public ClearCount readByUserIdAndFlag(String userId, boolean flag) {
-        var target = repository.findByUserIdAndFlag(userId, flag);
+    @Transactional
+    public ClearCount createClearCount(String userId, boolean flag, LocalDateTime time) {
+        var target = repository.findFirstByUserIdAndFlagOrderByTimeDesc(userId, flag);
         if (target == null) {
             var newClearCount = ClearCount.builder()
                     .userId(userId)
                     .flag(flag)
-                    .count(0)
+                    .time(time)
+                    .count(1)
+                    .build();
+            return repository.save(newClearCount);
+        } else {
+            var newClearCount = ClearCount.builder()
+                    .userId(userId)
+                    .flag(flag)
+                    .count(target.getCount() + 1)
+                    .time(time)
                     .build();
             return repository.save(newClearCount);
         }
-        return target;
-    }
-
-    @Transactional
-    public void increaseClearCount(String userId, boolean flag) {
-        var targetClearCount = readByUserIdAndFlag(userId, flag);
-        targetClearCount.setCount(targetClearCount.getCount() + 1);
     }
 }

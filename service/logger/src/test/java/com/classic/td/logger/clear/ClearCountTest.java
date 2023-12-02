@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -23,30 +26,12 @@ public class ClearCountTest {
         String userId = "testUser";
         boolean flag = true;
 
-        ClearCount clearCount = countService.readByUserIdAndFlag(userId, flag);
+        ClearCount clearCount = countService.createClearCount(userId, flag, LocalDateTime.now());
 
         assertNotNull(clearCount);
         assertEquals(userId, clearCount.getUserId());
         assertTrue(clearCount.isFlag());
         assertEquals(0, clearCount.getCount());
-    }
-
-    @Test
-    @Transactional
-    public void testIncreaseClearCount() {
-        String userId = "testUser";
-        boolean flag = true;
-
-        ClearCount clearCountBefore = countService.readByUserIdAndFlag(userId, flag);
-        int beforeCnt = clearCountBefore.getCount();
-        // Increase count
-        countService.increaseClearCount(userId, flag);
-
-        ClearCount clearCountAfter = countRepository.findByUserIdAndFlag(userId, flag);
-
-        assertNotNull(clearCountBefore);
-        assertNotNull(clearCountAfter);
-        assertEquals(beforeCnt + 1, clearCountAfter.getCount());
     }
 }
 
