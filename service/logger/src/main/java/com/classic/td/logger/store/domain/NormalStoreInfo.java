@@ -53,6 +53,18 @@ public class NormalStoreInfo {
     @Column(name = "buyed_info")
     private String buyedInfo;
 
+    @Column(name = "param0")
+    private String param0;
+
+    @Column(name = "param1")
+    private String param1;
+
+    @Column(name = "param2")
+    private String param2;
+
+    @Column(name = "param3")
+    private String param3;
+
     @Column(name = "time")
     @JsonFormat(shape= JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime time;
