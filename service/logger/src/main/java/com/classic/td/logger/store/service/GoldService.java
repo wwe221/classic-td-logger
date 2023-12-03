@@ -1,23 +1,24 @@
 package com.classic.td.logger.store.service;
 
-import com.classic.td.logger.store.domain.GoldAccount;
-import com.classic.td.logger.store.repository.GoldAccountRepository;
+import com.classic.td.logger.store.domain.GoldHistory;
+import com.classic.td.logger.store.repository.GoldHistoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class GoldService {
-    final GoldAccountRepository repository;
+    final GoldHistoryRepository repository;
 
-    public GoldAccount readByUserIdAndFlag(String userId, boolean flag) {
-        return repository.findByUserIdAndFlag(userId, flag);
+    public List<GoldHistory> readByUserIdAndFlag(String userId, boolean flag) {
+        return repository.findByUserIdAndFlagOrderByTimeDesc(userId, flag);
     }
 
     @Transactional
-    public void updateGoldAccount(String userId, boolean flag, int changeAmount) {
-        var account = readByUserIdAndFlag(userId, flag);
-        account.setGold(account.getGold() + changeAmount);
+    public List<GoldHistory> createGoldHistory(List<GoldHistory> history) {
+        return repository.saveAll(history);
     }
 }

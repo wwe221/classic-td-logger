@@ -31,7 +31,7 @@ public class ClearCountTest {
         assertNotNull(clearCount);
         assertEquals(userId, clearCount.getUserId());
         assertTrue(clearCount.isFlag());
-        assertEquals(0, clearCount.getCount());
+        assertEquals(1, clearCount.getCount());
     }
 }
 

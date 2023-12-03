@@ -6,13 +6,13 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "gold_table")
+@Table(name = "gold_history")
 @Getter
 @Setter
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor
-public class GoldAccount {
+public class GoldHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
