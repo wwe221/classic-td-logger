@@ -1,7 +1,6 @@
 package com.classic.td.logger.sidecontent.controller;
 
-import com.classic.td.logger.sidecontent.domain.FishingCount;
-import com.classic.td.logger.sidecontent.domain.FishingGearPurchase;
+import com.classic.td.logger.sidecontent.domain.*;
 import com.classic.td.logger.sidecontent.service.SideContentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,5 +22,20 @@ public class SideContentController {
     @PostMapping("/api/v1/fish/purchase")
     public Object purchaseFishingCount(@RequestBody List<FishingGearPurchase> purchases) {
         return service.createFishingGearPurchaseHistory(purchases);
+    }
+
+    @PostMapping("/api/v1/award/badge")
+    public Object createAwardBadgeHistory(@RequestBody List<AwardBadge> badges) {
+        return service.createAwardBadgeHistory(badges);
+    }
+
+    @PostMapping("/api/v1/cardpack/use")
+    public Object createCardPackUse(@RequestBody List<CardPackUseCount> cards) {
+        return service.createCardPackUseCountHistory(cards);
+    }
+
+    @PostMapping("/api/v1/mine/upgrade")
+    public Object createMineUpgrade(@RequestBody List<MineUpgrade> mineUpgrades) {
+        return service.createMineUpgradeHistory(mineUpgrades);
     }
 }

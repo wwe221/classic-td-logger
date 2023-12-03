@@ -1,9 +1,7 @@
 package com.classic.td.logger.sidecontent.service;
 
-import com.classic.td.logger.sidecontent.domain.FishingCount;
-import com.classic.td.logger.sidecontent.domain.FishingGearPurchase;
-import com.classic.td.logger.sidecontent.repository.FishingCountRepository;
-import com.classic.td.logger.sidecontent.repository.FishingGearPurchaseRepository;
+import com.classic.td.logger.sidecontent.domain.*;
+import com.classic.td.logger.sidecontent.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +13,9 @@ import java.util.List;
 public class SideContentService {
     final FishingCountRepository fishingCountRepository;
     final FishingGearPurchaseRepository fishingGearPurchaseRepository;
+    final AwardBadgeRepository awardBadgeRepository;
+    final CardPackUseCountRepository cardPackUseCountRepository;
+    final MineUpgradeRepository mineUpgradeRepository;
 
     @Transactional
     public List<FishingCount> createFishingCountHistory(List<FishingCount> fishingCounts){
@@ -24,5 +25,20 @@ public class SideContentService {
     @Transactional
     public List<FishingGearPurchase> createFishingGearPurchaseHistory(List<FishingGearPurchase> fishingGearPurchases) {
         return fishingGearPurchaseRepository.saveAll(fishingGearPurchases);
+    }
+
+    @Transactional
+    public List<AwardBadge> createAwardBadgeHistory(List<AwardBadge> badges) {
+        return awardBadgeRepository.saveAll(badges);
+    }
+
+    @Transactional
+    public List<CardPackUseCount> createCardPackUseCountHistory(List<CardPackUseCount> cardPackUseCounts) {
+        return cardPackUseCountRepository.saveAll(cardPackUseCounts);
+    }
+
+    @Transactional
+    public List<MineUpgrade> createMineUpgradeHistory(List<MineUpgrade> mineUpgrade) {
+        return mineUpgradeRepository.saveAll(mineUpgrade);
     }
 }
