@@ -34,6 +34,11 @@ public class SideContentController {
         return service.createCardPackUseCountHistory(cards);
     }
 
+    @PostMapping("/api/v1/cardpack/destroy")
+    public Object createCardPackDetroyLog(@RequestBody List<CardPackDestroy> cards) {
+        return service.createCardPackDestroyHistory(cards);
+    }
+
     @PostMapping("/api/v1/mine/upgrade")
     public Object createMineUpgrade(@RequestBody List<MineUpgrade> mineUpgrades) {
         return service.createMineUpgradeHistory(mineUpgrades);

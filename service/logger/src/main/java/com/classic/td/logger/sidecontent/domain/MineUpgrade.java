@@ -38,4 +38,15 @@ public class MineUpgrade {
     @JsonFormat(shape= JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime time;
 
+    @Column(name = "mineral_index")
+    private Integer mineralIndex;
+
+    @Column(name = "before_level")
+    private Integer beforeLevel;
+
+    @Column(name = "after_level")
+    private Integer afterLevel;
+
+    @Column(name = "mineral_data")
+    private String mineralData;
 }

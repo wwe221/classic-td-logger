@@ -15,6 +15,7 @@ public class SideContentService {
     final FishingGearPurchaseRepository fishingGearPurchaseRepository;
     final AwardBadgeRepository awardBadgeRepository;
     final CardPackUseCountRepository cardPackUseCountRepository;
+    final CardPackDestroyRepository cardPackDestroyRepository;
     final MineUpgradeRepository mineUpgradeRepository;
 
     @Transactional
@@ -40,5 +41,10 @@ public class SideContentService {
     @Transactional
     public List<MineUpgrade> createMineUpgradeHistory(List<MineUpgrade> mineUpgrade) {
         return mineUpgradeRepository.saveAll(mineUpgrade);
+    }
+
+    @Transactional
+    public List<CardPackDestroy> createCardPackDestroyHistory(List<CardPackDestroy> cardPackDestroys) {
+        return cardPackDestroyRepository.saveAll(cardPackDestroys);
     }
 }

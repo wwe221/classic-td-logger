@@ -1,5 +1,6 @@
 package com.classic.td.logger.sidecontent.domain;
 
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
@@ -7,13 +8,13 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "award_badge_info")
+@Table(name = "cardpack_destroy")
 @Getter
 @Setter
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor
-public class AwardBadge {
+public class CardPackDestroy {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -23,7 +24,7 @@ public class AwardBadge {
     private Integer version;
 
     @Column(name = "flag")
-    private boolean flag;
+    private Integer flag;
 
     @Column(name = "user_id", length = 40)
     private String userId;
@@ -31,29 +32,18 @@ public class AwardBadge {
     @Column(name = "utc")
     private Long utc;
 
-    @Column(name = "nick_name", length = 40)
-    private String nickName;
+    @Column(name = "towerIndex")
+    private Integer towerIndex;
+
+    @Column(name = "beforeCount")
+    private Integer beforeCount;
+
+    @Column(name = "afterCount")
+    private Integer afterCount;
 
     @Column(name = "time")
     @JsonFormat(shape= JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime time;
 
-    @Column(name = "badge_id")
-    private String badgeId;
-
-    @Column(name = "badge_name")
-    private String badgeName;
-
-    @Column(name = "param0")
-    private String param0;
-
-    @Column(name = "param1")
-    private String param1;
-
-    @Column(name = "param2")
-    private String param2;
-
-    @Column(name = "param3")
-    private String param3;
-
 }
+

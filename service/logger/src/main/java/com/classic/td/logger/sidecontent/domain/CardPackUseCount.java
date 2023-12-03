@@ -38,4 +38,22 @@ public class CardPackUseCount {
     @JsonFormat(shape= JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime time;
 
+    @Column(name = "use_count")
+    private Integer useCount;
+
+    @Column(name = "cardindex0")
+    private Integer cardindex0;
+
+    @Column(name = "cardindex1")
+    private Integer cardindex1;
+
+    @Column(name = "cardindex2")
+    private Integer cardindex2;
+
+    @Column(name = "cardindex3")
+    private Integer cardindex3;
+
+    @Column(name = "cardindex4")
+    private Integer cardindex4;
+
 }
