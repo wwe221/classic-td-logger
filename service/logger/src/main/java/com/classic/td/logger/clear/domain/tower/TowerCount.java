@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Table(name = "tower_create_count")
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor

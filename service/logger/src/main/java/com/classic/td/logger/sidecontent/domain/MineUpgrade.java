@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @Table(name = "mine_upgrade")
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor

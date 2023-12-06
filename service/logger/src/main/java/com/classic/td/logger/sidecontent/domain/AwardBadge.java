@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @Table(name = "award_badge_info")
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor

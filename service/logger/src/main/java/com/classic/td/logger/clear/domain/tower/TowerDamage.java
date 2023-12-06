@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @Table(name = "tower_damage")
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor

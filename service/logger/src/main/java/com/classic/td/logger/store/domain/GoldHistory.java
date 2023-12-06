@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @Table(name = "gold_history")
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor

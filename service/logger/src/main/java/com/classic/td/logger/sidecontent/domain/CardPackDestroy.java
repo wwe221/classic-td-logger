@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @Table(name = "cardpack_destroy")
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor

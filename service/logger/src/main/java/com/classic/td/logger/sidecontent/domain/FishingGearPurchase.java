@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @Table(name = "fishing_gear_purchase")
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor

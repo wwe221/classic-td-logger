@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 @Table(name = "clear_count")
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor
