@@ -32,9 +32,6 @@ public class ClearInfo {
     @Column(name = "user_id", length = 40)
     private String userId;
 
-    @Column(name = "utc")
-    private Long utcTime;
-
     @Column(name = "nick_name", length = 40)
     private String nickName;
 

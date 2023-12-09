@@ -29,9 +29,6 @@ public class FishingCount {
     @Column(name = "user_id", length = 40)
     private String userId;
 
-    @Column(name = "utc")
-    private Long utc;
-
     @Column(name = "nick_name", length = 40)
     private String nickName;
 

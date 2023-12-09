@@ -65,7 +65,6 @@ public class ClearInfoRepositoryTest {
             .version(1)
             .flag(true)
             .userId("testUser")
-            .utcTime(System.currentTimeMillis())
             .nickName("Test Nick")
             .roadType(1)
             .modeType(2)

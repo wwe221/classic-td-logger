@@ -30,9 +30,6 @@ public class CardPackDestroy {
     @Column(name = "user_id", length = 40)
     private String userId;
 
-    @Column(name = "utc")
-    private Long utc;
-
     @Column(name = "towerIndex")
     private Integer towerIndex;
 
