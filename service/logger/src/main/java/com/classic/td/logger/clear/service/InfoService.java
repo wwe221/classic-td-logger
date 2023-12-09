@@ -27,13 +27,6 @@ public class InfoService {
     @Transactional
     public List<ClearInfo> saveClearInfo(List<ClearInfo> clearInfos) {
         clearInfos.forEach(info -> {
-            /*  info 를 받아서
-            ~~1. clearCount 를 저장한다.~~
-            towerData 를 파싱해서
-                2. tower Damage를 저장한다.
-                3. towerCount 를 저장한다.
-            4. clearInfo 를 저장한다.
-            * */
             int version = info.getVersion();
             boolean flag = info.isFlag();
             countService.createClearCount(info.getUserId(), info.isFlag(), info.getTime());
@@ -44,16 +37,20 @@ public class InfoService {
             //이름1: 인덱스(int) : 데미지(int64) 로 타워데미지 테이블에 넣기
             List<TowerDamage> towerDamageList = new ArrayList<>();
             for (int i = 0; i < split1.length; i++) {
-                var towerInfo = split1[i].split(":");
-                var name = towerInfo[0];
-                var index = Integer.parseInt(towerInfo[1]);
-                var damage = Long.parseLong(towerInfo[2]);
-                towerDamageList.add(createTowerDamage(version, flag, info.getTime(), index, damage));
+                try {
+                    var towerInfo = split1[i].split(":");
+                    var name = towerInfo[0];
+                    var index = Integer.parseInt(towerInfo[1]);
+                    var damage = Long.parseLong(towerInfo[2]);
+                    towerDamageList.add(createTowerDamage(version, flag, info.getTime(), index, damage));
+                } catch (ArrayIndexOutOfBoundsException ignored) {}
+
             }
             var towerCounts = towerDamageList.stream()
                     .collect(Collectors.groupingBy(TowerDamage::getTowerIndex, Collectors.counting()));
             towerService.saveTowerDamages(towerDamageList);
-            towerService.saveTowerCount(towerCounts, version, flag);
+            if (!towerCounts.isEmpty())
+                towerService.saveTowerCount(towerCounts, version, flag);
         });
         return repository.saveAll(clearInfos);
     }
