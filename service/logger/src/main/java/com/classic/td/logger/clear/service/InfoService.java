@@ -43,8 +43,14 @@ public class InfoService {
                         var towerInfo = split1[i].split(":");
                         var name = towerInfo[0];
                         var index = Integer.parseInt(towerInfo[1]);
-                        var damage = Long.parseLong(towerInfo[2]);
-                        towerDamageList.add(createTowerDamage(version, flag, info.getTime(), index, damage));
+                        var bossDamage = Long.parseLong(towerInfo[2]);
+                        Long normalDamage = null;
+                        if (towerInfo.length > 3) {
+                             if (!towerInfo[3].equalsIgnoreCase("NULL")) {
+                                 normalDamage = Long.parseLong(towerInfo[3]);
+                             }
+                        }
+                        towerDamageList.add(createTowerDamage(version, flag, info.getTime(), index, bossDamage, normalDamage));
                     } catch (ArrayIndexOutOfBoundsException ignored) {
                     }
 
@@ -59,13 +65,14 @@ public class InfoService {
         return repository.saveAll(clearInfos);
     }
 
-    private TowerDamage createTowerDamage(int version, boolean flag, LocalDateTime time, int index, Long damage) {
+    private TowerDamage createTowerDamage(int version, boolean flag, LocalDateTime time, int index, Long bossDamage, Long normalDamage) {
         return TowerDamage.builder()
                 .version(version)
                 .flag(flag)
                 .time(time)
                 .towerIndex(index)
-                .damage(damage)
+                .bossDamage(bossDamage)
+                .normalDamage(normalDamage)
                 .build();
     }
 }

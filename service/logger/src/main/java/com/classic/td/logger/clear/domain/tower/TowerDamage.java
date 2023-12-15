@@ -29,8 +29,11 @@ public class TowerDamage {
     @Column(name = "tower_index")
     private Integer towerIndex;
 
-    @Column(name = "damage")
-    private Long damage;
+    @Column(name = "boss_damage")
+    private Long bossDamage;
+
+    @Column(name = "normal_damage")
+    private Long normalDamage;
 
     @Column(name = "time")
     @JsonFormat(shape= JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
