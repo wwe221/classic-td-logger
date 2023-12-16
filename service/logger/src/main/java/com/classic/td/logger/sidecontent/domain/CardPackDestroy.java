@@ -25,7 +25,7 @@ public class CardPackDestroy {
     private Integer version;
 
     @Column(name = "flag")
-    private Integer flag;
+    private boolean flag;
 
     @Column(name = "user_id", length = 40)
     private String userId;

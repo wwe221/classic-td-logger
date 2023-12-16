@@ -35,6 +35,9 @@ public class TowerDamage {
     @Column(name = "normal_damage")
     private Long normalDamage;
 
+    @Column(name = "difficult")
+    private Integer difficult;
+
     @Column(name = "time")
     @JsonFormat(shape= JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime time = LocalDateTime.now();

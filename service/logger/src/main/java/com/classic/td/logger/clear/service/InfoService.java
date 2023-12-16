@@ -50,7 +50,7 @@ public class InfoService {
                                  normalDamage = Long.parseLong(towerInfo[3]);
                              }
                         }
-                        towerDamageList.add(createTowerDamage(version, flag, info.getTime(), index, bossDamage, normalDamage));
+                        towerDamageList.add(createTowerDamage(version, flag, info.getTime(), index, bossDamage, normalDamage, info.getDifficult()));
                     } catch (ArrayIndexOutOfBoundsException ignored) {
                     }
 
@@ -59,13 +59,13 @@ public class InfoService {
                         .collect(Collectors.groupingBy(TowerDamage::getTowerIndex, Collectors.counting()));
                 towerService.saveTowerDamages(towerDamageList);
                 if (!towerCounts.isEmpty())
-                    towerService.saveTowerCount(towerCounts, version, flag);
+                    towerService.saveTowerCount(towerCounts, version, flag,info.getDifficult());
             }
         });
         return repository.saveAll(clearInfos);
     }
 
-    private TowerDamage createTowerDamage(int version, boolean flag, LocalDateTime time, int index, Long bossDamage, Long normalDamage) {
+    private TowerDamage createTowerDamage(int version, boolean flag, LocalDateTime time, int index, Long bossDamage, Long normalDamage, int difficulty) {
         return TowerDamage.builder()
                 .version(version)
                 .flag(flag)
@@ -73,6 +73,7 @@ public class InfoService {
                 .towerIndex(index)
                 .bossDamage(bossDamage)
                 .normalDamage(normalDamage)
+                .difficult(difficulty)
                 .build();
     }
 }

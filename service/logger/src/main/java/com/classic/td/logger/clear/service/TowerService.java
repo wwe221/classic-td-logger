@@ -23,14 +23,15 @@ public class TowerService {
     }
 
     @Transactional
-    public TowerCount getTowerCount(int version, boolean flag, int index) {
-        var target = countRepository.findByVersionAndFlagAndTowerIndex(version, flag, index);
+    public TowerCount getTowerCount(int version, boolean flag, int index, int diff) {
+        var target = countRepository.findByVersionAndFlagAndTowerIndexAndDifficult(version, flag, index, diff);
         if (target == null) {
             var newTowerCount = TowerCount.builder()
                     .createCount(0)
                     .flag(flag)
                     .version(version)
                     .towerIndex(index)
+                    .difficult(diff)
                     .build();
             return countRepository.save(newTowerCount);
         }
@@ -38,9 +39,9 @@ public class TowerService {
     }
 
     @Transactional
-    public void saveTowerCount(Map<Integer,Long> countMap, int version, boolean flag) {
+    public void saveTowerCount(Map<Integer,Long> countMap, int version, boolean flag, int diff) {
         countMap.forEach((index, count) -> {
-            var towerCnt = getTowerCount(version, flag, index);
+            var towerCnt = getTowerCount(version, flag, index, diff);
             towerCnt.setCreateCount(towerCnt.getCreateCount() + count.intValue());
         });
     }

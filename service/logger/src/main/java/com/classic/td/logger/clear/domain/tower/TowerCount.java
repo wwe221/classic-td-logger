@@ -30,4 +30,7 @@ public class TowerCount {
     @Column(name = "create_count")
     private Integer createCount;
 
+    @Column(name = "difficult")
+    private Integer difficult;
+
 }
