@@ -40,18 +40,18 @@ public class CardPackUseCount {
     private Integer useCount;
 
     @Column(name = "cardindex0")
-    private Integer cardindex0;
+    private Integer cardIndex0;
 
     @Column(name = "cardindex1")
-    private Integer cardindex1;
+    private Integer cardIndex1;
 
     @Column(name = "cardindex2")
-    private Integer cardindex2;
+    private Integer cardIndex2;
 
     @Column(name = "cardindex3")
-    private Integer cardindex3;
+    private Integer cardIndex3;
 
     @Column(name = "cardindex4")
-    private Integer cardindex4;
+    private Integer cardIndex4;
 
 }
