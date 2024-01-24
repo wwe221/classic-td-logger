@@ -33,4 +33,10 @@ public class GoldHistory {
     @JsonFormat(shape= JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime time;
 
+    @Column(name = "history_name", length = 30)
+    private String historyName;
+
+    @Column(name = "history_type", length = 30)
+    private String historyType;
+
 }

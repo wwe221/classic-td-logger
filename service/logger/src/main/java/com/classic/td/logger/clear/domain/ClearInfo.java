@@ -63,6 +63,9 @@ public class ClearInfo {
     @JsonFormat(shape= JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime time = LocalDateTime.now();
 
+    @Column(name = "platform_type")
+    private Integer platformType;
+
     public String getCreatedDateTime() {
         if (time != null)
             return time.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));

@@ -67,4 +67,6 @@ public class CashStoreInfo {
     @JsonFormat(shape= JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime time;
 
+    @Column(name = "platform_type")
+    private Integer platformType;
 }
