@@ -2,6 +2,7 @@ package com.classic.td.logger.log.controller;
 
 import com.classic.td.logger.log.domain.BugLog;
 import com.classic.td.logger.log.domain.FreeLog;
+import com.classic.td.logger.log.domain.MapleValley;
 import com.classic.td.logger.log.service.LogService;
 import com.classic.td.logger.store.domain.GoldHistory;
 import lombok.RequiredArgsConstructor;
@@ -24,5 +25,10 @@ public class LogController {
     @PostMapping("/api/v1/log/bug")
     public Object createBugLog(@RequestBody List<BugLog> logs) {
         return service.createBugLogs(logs);
+    }
+
+    @PostMapping("/api/v1/log/maplevalley")
+    public Object createMapleValley(@RequestBody List<MapleValley> logs) {
+        return service.createMapleValley(logs);
     }
 }
